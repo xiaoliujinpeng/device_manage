@@ -11,5 +11,4 @@ class RecordSerializer(serializers.ModelSerializer):
 class ApproveSerializer(serializers.ModelSerializer):
     class Meta:
         model = Approve
-        fields = "__all__"
-
+        fields = ['username', 'deviceId', 'deviceName', 'state', 'created_time']

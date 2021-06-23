@@ -16,15 +16,15 @@ from util.custom_page import PageSet
 class DeviceViewSet(ModelViewSet):
     queryset = Device.objects.all()
     serializer_class = DeviceSerializer
-    pagination_class = PageSet
+    # pagination_class = PageSet
 
     @action(detail=False, methods=['post'])
     def apply_borrow(self, request):
         '''
         申请人申请借用
         '''
-        device_id = request.data.get("id")
-        device = Device.objects.get(pk=device_id)
+        device_id = request.data.get("serial_number")
+        device = Device.objects.filter(serial_number=device_id).first()
         if device.state != 0:
             return Response("此设备目前不可借用", status=201)
         device.state = 1
@@ -38,8 +38,8 @@ class DeviceViewSet(ModelViewSet):
         '''
         申请人申请归还
         '''
-        device_id = request.data.get("id")
-        device = Device.objects.get(pk=device_id)
+        device_id = request.data.get("serial_number")
+        device = Device.objects.filter(serial_number=device_id).first()
         approve = Approve(username=request.user.username, operation=1, device=device)
         approve.save()
         return Response("申请成功")
@@ -49,8 +49,8 @@ class DeviceViewSet(ModelViewSet):
         '''
         获取设备的借用人
         '''
-        device_id = request.data.get("id")
-        device = Device.objects.get(pk=device_id)
+        device_id = request.data.get("serial_number")
+        device = Device.objects.filter(serial_number=device_id).first()
         approve = Approve.objects.filter(device=device.name, operation=0).first()
         user = Users.objects.filter(username=approve.username).first()
         tmp = UserInfoSerializer(user)
@@ -61,8 +61,8 @@ class DeviceViewSet(ModelViewSet):
         '''
         根据设备id，返回设备属性及其相关的借出接入记录
         '''
-        device_id = request.data.get("id")
-        device = Device.objects.get(pk=device_id)
+        device_id = request.data.get("serial_number")
+        device = Device.objects.filter(serial_number=device_id).first()
         records = Record.objects.filter(device=device.name).all
         tmp = DeviceAboutSerializer({"device": device, "records": records})
         return Response(tmp.data)

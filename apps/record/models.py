@@ -32,6 +32,8 @@ class Approve(BaseModel):
     username = models.CharField(max_length=255, null=False, blank=False, verbose_name="借用人")
     operation = models.SmallIntegerField(choices=STATE_ITEMS, null=False, blank=False, verbose_name="操作")
     device = models.ForeignKey(Device, null=True, on_delete=models.SET_NULL)
+    deviceId = models.CharField(max_length=255, null=False, blank=False, verbose_name="设备序列号")
+    deviceName = models.CharField(max_length=255, null=False, blank=False, verbose_name="设备名称")
     state = models.BooleanField(default=False, verbose_name="审批状态")
 
     def __str__(self):

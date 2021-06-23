@@ -43,7 +43,8 @@ class UserViewSet(ModelViewSet):
             'token': str(refresh.access_token),
             'refresh': str(refresh),
         }
-        return Response(token_data)
+        tmp = UserSerializer(user)
+        return Response({"token": token_data, "user": tmp.data})
 
     @action(detail=False, methods=['post'])
     def add_user(self, request):
@@ -53,9 +54,9 @@ class UserViewSet(ModelViewSet):
 
         data = request.data
         try:
-            Users.objects.create_user(username=data.get("username"), password=data.get("password"), name=data.get("name"))
+            Users.objects.create_user(username=data.get("username"), password=data.get("password"),
+                                      name=data.get("name"))
         except Exception as e:
             return Response(str(e))
 
         return Response("创建成功")
-

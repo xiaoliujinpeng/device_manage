@@ -1,10 +1,10 @@
-from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from apps.record.models import Record, Approve
 from apps.record.serializers import RecordSerializer, ApproveSerializer
 from util.custom_page import PageSet
+from util.custom_permission import ApprovePermission
 
 
 # Create your views here.
@@ -13,12 +13,14 @@ from util.custom_page import PageSet
 class RecordViewSet(ModelViewSet):
     queryset = Record.objects.all()
     serializer_class = RecordSerializer
+    permission_classes = [ApprovePermission, ]
     pagination_class = PageSet
 
 
 class ApproveViewSet(ModelViewSet):
     queryset = Approve.objects.all()
     serializer_class = ApproveSerializer
+    permission_classes = [ApprovePermission, ]
 
     @action(detail=False, methods=['post'])
     def agree(self, request):
