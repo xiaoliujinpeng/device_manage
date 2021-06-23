@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7bd2266b-0f0b-40f1-9249-f0494a0cd7b2" name="Default Changelist" comment="fix -">
-      <change afterPath="$PROJECT_DIR$/util/custom_permission.py" afterDir="false" />
+    <list default="true" id="7bd2266b-0f0b-40f1-9249-f0494a0cd7b2" name="Default Changelist" comment="add permission">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/device/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/device/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/record/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/record/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/record/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/record/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/record/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/record/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/device_manage/config/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/device_manage/config/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/custom_permission.py" beforeDir="false" afterPath="$PROJECT_DIR$/util/custom_permission.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +79,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624441058758</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add permission">
+      <created>1624465623123</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1624465623124</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -102,6 +103,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix -" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix -" />
+    <MESSAGE value="add permission" />
+    <option name="LAST_COMMIT_MESSAGE" value="add permission" />
   </component>
 </project>
