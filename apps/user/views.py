@@ -13,14 +13,11 @@ from apps.user.serializers import UserSerializer, UserLoginSerializer, UserInfoS
 
 class UserViewSet(ModelViewSet):
     queryset = Users.objects.all()
-    serializer_class = UserSerializer
 
     def get_serializer_class(self):
         if self.action == "login":
             return UserLoginSerializer
-        if self.action == "info":
-            return UserInfoSerializer
-        return UserSerializer
+        return UserInfoSerializer
 
     def get_permissions(self):
         if self.action == 'login':
@@ -32,12 +29,13 @@ class UserViewSet(ModelViewSet):
     @action(detail=False, methods=['post'])
     def login(self, request):
         serializer = self.get_serializer(data=request.data)
+
         if not serializer.is_valid():
             return Response(serializer.errors, status=201)
 
-        id = serializer.data.get("id")
+        username = serializer.data.get("username")
         password = serializer.data.get("password")
-        user = authenticate(id=id, password=password)
+        user = authenticate(username=username, password=password)
         if not user:
             return Response("用户名或密码错误", status=201)
         refresh = RefreshToken.for_user(user)
@@ -46,3 +44,18 @@ class UserViewSet(ModelViewSet):
             'refresh': str(refresh),
         }
         return Response(token_data)
+
+    @action(detail=False, methods=['post'])
+    def add_user(self, request):
+        admin = request.user
+        if not admin.is_superuser:
+            return Response("无法操作")
+
+        data = request.data
+        try:
+            Users.objects.create_user(username=data.get("username"), password=data.get("password"), name=data.get("name"))
+        except Exception as e:
+            return Response(str(e))
+
+        return Response("创建成功")
+
