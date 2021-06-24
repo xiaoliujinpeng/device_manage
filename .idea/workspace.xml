@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7bd2266b-0f0b-40f1-9249-f0494a0cd7b2" name="Default Changelist" comment="add permission">
+      <change afterPath="$PROJECT_DIR$/device_manage/config/cors.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/custom_permission.py" beforeDir="false" afterPath="$PROJECT_DIR$/util/custom_permission.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/device_manage/config/drf.py" beforeDir="false" afterPath="$PROJECT_DIR$/device_manage/config/drf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/device_manage/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/device_manage/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
