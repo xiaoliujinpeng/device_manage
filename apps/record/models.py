@@ -26,15 +26,17 @@ class Record(BaseModel):
 
 class Approve(BaseModel):
     STATE_ITEMS = (
-        (0, "申请借用"),
-        (1, "申请归还"),
+        (0, "未审核"),
+        (1, "审核通过"),
+        (2, "审核拒绝"),
     )
     username = models.CharField(max_length=255, null=False, blank=False, verbose_name="借用人")
-    operation = models.SmallIntegerField(choices=STATE_ITEMS, null=False, blank=False, verbose_name="操作")
+    operation = models.SmallIntegerField(choices=OPERATION_ITEMS, null=False, blank=False, verbose_name="操作")
     device = models.ForeignKey(Device, null=True, on_delete=models.SET_NULL)
     deviceId = models.CharField(max_length=255, null=False, blank=False, verbose_name="设备序列号")
     deviceName = models.CharField(max_length=255, null=False, blank=False, verbose_name="设备名称")
-    state = models.BooleanField(default=False, verbose_name="审批状态")
+    state = models.SmallIntegerField(choices=STATE_ITEMS, default=0, verbose_name="审批状态")
+    show = models.BooleanField(default=True, verbose_name="是否显示")
 
     def __str__(self):
         tmp = {0: "申请借用", 1: "申请归还"}

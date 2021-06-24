@@ -16,6 +16,7 @@ from util.custom_page import PageSet
 class DeviceViewSet(ModelViewSet):
     queryset = Device.objects.all()
     serializer_class = DeviceSerializer
+
     # pagination_class = PageSet
 
     @action(detail=False, methods=['post'])
@@ -25,12 +26,18 @@ class DeviceViewSet(ModelViewSet):
         '''
         device_id = request.data.get("serial_number")
         device = Device.objects.filter(serial_number=device_id).first()
+        if device is None:
+            return Response("设备不存在", status=400)
         if device.state != 0:
             return Response("此设备目前不可借用", status=201)
         device.state = 1
-        approve = Approve(username=request.user.username, operation=0, device=device)
-        device.save()
-        approve.save()
+        try:
+            approve = Approve(username=request.user.username, operation=0, device=device, deviceId=device.serial_number,
+                              deviceName=device.name)
+            device.save()
+            approve.save()
+        except Exception as e:
+            raise (str(e))
         return Response("申请成功")
 
     @action(detail=False, methods=['post'])
@@ -40,8 +47,23 @@ class DeviceViewSet(ModelViewSet):
         '''
         device_id = request.data.get("serial_number")
         device = Device.objects.filter(serial_number=device_id).first()
-        approve = Approve(username=request.user.username, operation=1, device=device)
-        approve.save()
+        if device is None:
+            return Response("输入的设备不存在", status=400)
+        approve_id = request.data.get("id")
+        try:
+            old_approve = Approve.objects.get(pk=approve_id)
+        except Exception as e:
+            return Response("无此审批表", status=400)
+        if old_approve.show:
+            try:
+                approve = Approve(username=request.user.username, operation=1, device=device,
+                                  deviceId=device.serial_number,
+                                  deviceName=device.name)
+                approve.save()
+            except Exception as e:
+                return Response(str(e))
+        old_approve.show = False
+        old_approve.save()
         return Response("申请成功")
 
     @action(detail=False, methods=['post'])
@@ -63,6 +85,8 @@ class DeviceViewSet(ModelViewSet):
         '''
         device_id = request.data.get("serial_number")
         device = Device.objects.filter(serial_number=device_id).first()
-        records = Record.objects.filter(device=device.name).all
+        if device is None:
+            return Response("输入的设备不存在", status=400)
+        records = Record.objects.filter(device=device.name).all()
         tmp = DeviceAboutSerializer({"device": device, "records": records})
         return Response(tmp.data)

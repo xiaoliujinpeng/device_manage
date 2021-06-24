@@ -14,7 +14,7 @@ class Device(BaseModel):
     name = models.CharField(max_length=255, null=False, blank=False, verbose_name="设备名称")
     location = models.CharField(max_length=255, null=False, blank=False, verbose_name="设备位置")
     classes = models.CharField(max_length=255, null=False, blank=False, verbose_name="设备类型")
-    comments = models.CharField(max_length=500, null=True, blank=False, verbose_name="备注")
+    comments = models.CharField(max_length=500, null=True, blank=True, verbose_name="备注")
     state = models.SmallIntegerField(choices=STATE_ITEMS, null=False, default=0, blank=False, verbose_name="设备状态")
 
     def __str__(self):

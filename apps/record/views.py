@@ -14,13 +14,14 @@ class RecordViewSet(ModelViewSet):
     queryset = Record.objects.all()
     serializer_class = RecordSerializer
     permission_classes = [ApprovePermission, ]
-    pagination_class = PageSet
+    filter_fields = ['username', 'operation', 'device']
 
 
 class ApproveViewSet(ModelViewSet):
     queryset = Approve.objects.all()
     serializer_class = ApproveSerializer
     permission_classes = [ApprovePermission, ]
+    filter_fields = ['state', 'operation', 'username']
 
     @action(detail=False, methods=['post'])
     def agree(self, request):
