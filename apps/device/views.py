@@ -23,6 +23,26 @@ class DeviceViewSet(ModelViewSet):
             return Response("设备的序列号已存在", 400)
         return super().create(request, *args, **kwargs)
 
+    def list(self, request, *args, **kwargs):
+        '''
+        根据类别进行分类
+        :param request:
+        :param args:
+        :param kwargs:
+        :return:
+        '''
+        queryset = self.filter_queryset(self.get_queryset())
+        results = dict()
+        for i, each in enumerate(queryset):
+            classes = each.classes
+            serializer = DeviceSerializer(each)
+            if classes in results:
+                results[classes].append(serializer.data)
+            else:
+                results[classes] = list()
+                results[classes].append(serializer.data)
+        return Response(results, status=200)
+
     @action(detail=False, methods=['post'])
     def apply_borrow(self, request):
         '''
