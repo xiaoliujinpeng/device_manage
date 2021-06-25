@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework_simplejwt.views import token_refresh
 from apps.user.models import Users, UserRegister
 from apps.user.serializers import UserSerializer, UserLoginSerializer, UserInfoSerializer, UserRegisterSerializer
 
@@ -61,6 +62,12 @@ class UserViewSet(ModelViewSet):
 
         return Response("创建成功")
 
+    @action(detail=False, methods=['post'])
+    def new_token(self, request):
+        token = token_refresh(request)
+        print(token)
+        return Response("sss")
+
 
 class UserRegisterViewSet(ModelViewSet):
     queryset = UserRegister.objects.all()
@@ -79,8 +86,8 @@ class UserRegisterViewSet(ModelViewSet):
             return Response("已经登录")
 
         data = request.data
-        if UserRegister.objects.filter(username=data.username).count() > 0 or Users.objects.filter(
-                username=data.username).count() > 0:
+        if UserRegister.objects.filter(username=data.get("username")).count() > 0 or Users.objects.filter(
+                username=data.get("username")).count() > 0:
             return Response("用户已经被注册")
         try:
             user = UserRegister(username=data.get('username'), name=data.get('name'),

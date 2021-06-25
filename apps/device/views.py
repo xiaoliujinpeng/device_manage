@@ -18,6 +18,10 @@ class DeviceViewSet(ModelViewSet):
     serializer_class = DeviceSerializer
 
     # pagination_class = PageSet
+    def create(self, request, *args, **kwargs):
+        if Device.objects.filter(serial_number=request.data.get("serial_number")).count() > 0:
+            return Response("设备的序列号已存在", 400)
+        return super().create(request, *args, **kwargs)
 
     @action(detail=False, methods=['post'])
     def apply_borrow(self, request):

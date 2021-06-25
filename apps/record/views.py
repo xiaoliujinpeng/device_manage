@@ -1,6 +1,7 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
 from apps.record.models import Record, Approve
 from apps.record.serializers import RecordSerializer, ApproveSerializer
 from util.custom_page import PageSet
@@ -13,14 +14,14 @@ from util.custom_permission import ApprovePermission
 class RecordViewSet(ModelViewSet):
     queryset = Record.objects.all()
     serializer_class = RecordSerializer
-    permission_classes = [ApprovePermission, ]
+    permission_classes = [IsAuthenticated, ApprovePermission, ]
     filter_fields = ['username', 'operation', 'device']
 
 
 class ApproveViewSet(ModelViewSet):
     queryset = Approve.objects.all()
     serializer_class = ApproveSerializer
-    permission_classes = [ApprovePermission, ]
+    permission_classes = [IsAuthenticated, ApprovePermission, ]
     filter_fields = ['state', 'operation', 'username']
 
     @action(detail=False, methods=['post'])

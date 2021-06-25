@@ -26,4 +26,5 @@ class ApproveSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Approve
-        fields = ['username', 'deviceId', 'deviceName', 'state', 'created_time', 'operation', 'show']
+        fields = ['username', 'deviceId', 'deviceName', 'state', 'created_time', 'operation', 'show', 'modified_time',
+                  'id']
