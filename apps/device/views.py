@@ -2,11 +2,13 @@ from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
 from apps.device.models import Device
 from apps.user.models import Users
 from apps.user.serializers import UserInfoSerializer
 from apps.record.models import Approve, Record
 from apps.device.serializers import DeviceSerializer, DeviceAboutSerializer
+from util.custom_permission import DevicePermission
 from util.custom_page import PageSet
 
 
@@ -16,6 +18,7 @@ from util.custom_page import PageSet
 class DeviceViewSet(ModelViewSet):
     queryset = Device.objects.all()
     serializer_class = DeviceSerializer
+    permission_classes = [IsAuthenticated, DevicePermission, ]
 
     # pagination_class = PageSet
     def create(self, request, *args, **kwargs):
@@ -56,12 +59,11 @@ class DeviceViewSet(ModelViewSet):
             return Response("此设备目前不可借用", status=201)
         device.state = 1
         try:
-            approve = Approve(username=request.user.username, operation=0, device=device, deviceId=device.serial_number,
-                              deviceName=device.name)
+            approve = Approve(username=request.user.username, operation=0, device=device)
             device.save()
             approve.save()
         except Exception as e:
-            raise (str(e))
+            return Response(str(e))
         return Response("申请成功")
 
     @action(detail=False, methods=['post'])
@@ -80,9 +82,7 @@ class DeviceViewSet(ModelViewSet):
             return Response("无此审批表", status=400)
         if old_approve.show:
             try:
-                approve = Approve(username=request.user.username, operation=1, device=device,
-                                  deviceId=device.serial_number,
-                                  deviceName=device.name)
+                approve = Approve(username=request.user.username, operation=1, device=device)
                 approve.save()
             except Exception as e:
                 return Response(str(e))
@@ -97,7 +97,7 @@ class DeviceViewSet(ModelViewSet):
         '''
         device_id = request.data.get("serial_number")
         device = Device.objects.filter(serial_number=device_id).first()
-        approve = Approve.objects.filter(device=device.name, operation=0).first()
+        approve = Approve.objects.filter(device=device, operation=0).first()
         user = Users.objects.filter(username=approve.username).first()
         tmp = UserInfoSerializer(user)
         return Response(tmp.data)
@@ -111,6 +111,6 @@ class DeviceViewSet(ModelViewSet):
         device = Device.objects.filter(serial_number=device_id).first()
         if device is None:
             return Response("输入的设备不存在", status=400)
-        records = Record.objects.filter(device=device.name).all()
+        records = Record.objects.filter(device=device).all()
         tmp = DeviceAboutSerializer({"device": device, "records": records})
         return Response(tmp.data)

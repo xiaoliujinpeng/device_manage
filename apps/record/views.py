@@ -42,7 +42,7 @@ class ApproveViewSet(ModelViewSet):
             device.state = 2
         else:
             device.state = 0
-        record = Record(username=approve.username, operation=approve.operation, device=device.name,
+        record = Record(username=approve.username, operation=approve.operation, device=device,
                         approver=request.user.username)
         approve.save()
         device.save()

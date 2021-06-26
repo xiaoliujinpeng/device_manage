@@ -22,9 +22,11 @@ class ApproveSerializer(serializers.ModelSerializer):
         result = super().to_representation(instance)
         obj = Users.objects.filter(username=instance.username).first()
         result['name'] = obj.name
+        result['deviceName'] = instance.device.name
+        result['deviceId'] = instance.device.serial_number
         return result
 
     class Meta:
         model = Approve
-        fields = ['username', 'deviceId', 'deviceName', 'state', 'created_time', 'operation', 'show', 'modified_time',
+        fields = ['username', 'state', 'created_time', 'operation', 'show', 'modified_time',
                   'id']
