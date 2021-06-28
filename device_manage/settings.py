@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'apps.user',
     'apps.device',
     'apps.record',
+    'apps.micro',
 ]
 
 MIDDLEWARE = [
@@ -108,7 +109,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+# USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -126,3 +127,5 @@ from device_manage.config.drf import *
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+HOST_URL = "https://wzgl.xiongyi24.club"

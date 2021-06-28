@@ -32,3 +32,4 @@ __pycache__
 /logs/supervisord/*.?*
 /logs/uwsgi/*.?*
 /media/*/
+/media/

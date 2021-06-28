@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7bd2266b-0f0b-40f1-9249-f0494a0cd7b2" name="Default Changelist" comment="修复设备序列号重复时的异常处理">
+      <change afterPath="$PROJECT_DIR$/apps/micro/apis.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/micro/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/device/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/device/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/record/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/record/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/record/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/record/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/record/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/record/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/device_manage/config/drf.py" beforeDir="false" afterPath="$PROJECT_DIR$/device_manage/config/drf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/custom_permission.py" beforeDir="false" afterPath="$PROJECT_DIR$/util/custom_permission.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/device_manage/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/device_manage/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/device_manage/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/device_manage/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +49,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../py reference/django-rest-framework" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\pyproject\device_manage\device_manage" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="manage" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
