@@ -16,7 +16,6 @@ class ApprovePermission(BasePermission):
 
 
 class DevicePermission(BasePermission):
-
     def has_permission(self, request, view):
         if request.user.is_superuser:
             return True
@@ -25,6 +24,8 @@ class DevicePermission(BasePermission):
         elif request.method == 'POST' and view.action in ['get_all']:
             return True
         elif request.method == 'PUT' and view.action in ['update']:
+            return True
+        elif view.action in ['apply_borrow', 'apply_return']:
             return True
         else:
             return False
