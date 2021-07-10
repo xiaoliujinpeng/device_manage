@@ -33,3 +33,4 @@ __pycache__
 /logs/uwsgi/*.?*
 /media/*/
 /media/
+/device_manage/config/database.py
