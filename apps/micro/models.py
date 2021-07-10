@@ -6,7 +6,10 @@ from util.base_model import BaseModel
 
 class Carousel(BaseModel):
     # url = models.URLField(max_length=500, null=False, blank=False, verbose_name="url")
-    classes = models.CharField(max_length=50, null=False, blank=False, verbose_name="类型")
+    CLASSES_ITEMS = (
+        (0, "图片"),
+    )
+    classes = models.SmallIntegerField(choices=CLASSES_ITEMS, default=0, null=True, blank=True, verbose_name="类型")
     image = models.ImageField(upload_to="micro/%Y/%m", default="micro/default.jpg", blank=True, verbose_name="图片")
 
     def __str__(self):

@@ -3,11 +3,11 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
-from apps.device.models import Device
+from apps.device.models import Device, Location
 from apps.user.models import Users
 from apps.user.serializers import UserInfoSerializer
 from apps.record.models import Approve, Record
-from apps.device.serializers import DeviceSerializer, DeviceAboutSerializer
+from apps.device.serializers import DeviceSerializer, DeviceAboutSerializer, LocationSerializer
 from util.custom_permission import DevicePermission
 from util.custom_page import PageSet
 
@@ -72,7 +72,11 @@ class DeviceViewSet(ModelViewSet):
         申请人申请归还
         '''
         device_id = request.data.get("serial_number")
+        location_id = request.data.get("location_number")
         device = Device.objects.filter(serial_number=device_id).first()
+        location = Location.objects.filter(serial_number=location_id).first()
+        if location is None:
+            Response("位置不存在", status=400)
         if device is None:
             return Response("输入的设备不存在", status=400)
         approve_id = request.data.get("id")
@@ -86,8 +90,10 @@ class DeviceViewSet(ModelViewSet):
                 approve.save()
             except Exception as e:
                 return Response(str(e))
+        device.location = location
         old_approve.show = False
         old_approve.save()
+        device.save()
         return Response("申请成功")
 
     @action(detail=False, methods=['post'])
@@ -114,3 +120,18 @@ class DeviceViewSet(ModelViewSet):
         records = Record.objects.filter(device=device).all()
         tmp = DeviceAboutSerializer({"device": device, "records": records})
         return Response(tmp.data)
+
+
+class LocationViewSet(ModelViewSet):
+    queryset = Location.objects.all()
+    serializer_class = LocationSerializer
+    filter_fields = ['serial_number', 'name']
+
+    # def retrieve(self, request, *args, **kwargs):
+    #     number = request.data.get("serial_number")
+    #     try:
+    #         location = Location.objects.get(serial_number=number)
+    #     except Exception as e:
+    #         return Response("位置不存在", status=404)
+    #     serializer = self.get_serializer(location)
+    #     return Response(serializer.data)
