@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'apps.device',
     'apps.record',
     'apps.micro',
+    'apps.analysis',
 ]
 
 MIDDLEWARE = [
@@ -53,7 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'util.LogMiddlerware.LogMiddleware'
+    'apps.analysis.MiddleMare.ApiLogger.ApiLogger',
 ]
 
 ROOT_URLCONF = 'device_manage.urls'

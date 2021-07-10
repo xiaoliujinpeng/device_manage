@@ -23,3 +23,4 @@ class Device(BaseModel):
     class Meta:
         verbose_name = "设备表"
         verbose_name_plural = "设备表"
+
