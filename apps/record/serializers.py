@@ -24,9 +24,13 @@ class ApproveSerializer(serializers.ModelSerializer):
         result['name'] = obj.name
         result['deviceName'] = instance.device.name
         result['deviceId'] = instance.device.serial_number
+        if result['location'] is None:
+            pass
+        else:
+            result['location'] = instance.location.name
         return result
 
     class Meta:
         model = Approve
         fields = ['username', 'state', 'created_time', 'operation', 'show', 'modified_time',
-                  'id']
+                  'id', 'location']

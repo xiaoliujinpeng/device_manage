@@ -1,9 +1,9 @@
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': "test",
+        'NAME': "device-manage",
         'USER': 'root',
-        "PASSWORD": '123456',
-        'HOST': '81.70.29.251'
+        "PASSWORD": 'qaz789',
+        'HOST': '49.232.137.109'
     }
 }

@@ -42,6 +42,8 @@ class ApproveViewSet(ModelViewSet):
             device.state = 2
         else:
             device.state = 0
+            location = approve.location
+            device.location = location
         record = Record(username=approve.username, operation=approve.operation, device=device,
                         approver=request.user.username)
         approve.save()
@@ -61,7 +63,7 @@ class ApproveViewSet(ModelViewSet):
             return Response("不可操作")
         approve_id = request.data.get("id")
         approve = Approve.objects.get(pk=approve_id)
-        approve.state = True
+        approve.state = 2
         device = approve.device
         if approve.operation == 0 and device.state == 1:
             device.state = 0

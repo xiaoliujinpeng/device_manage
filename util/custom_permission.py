@@ -32,3 +32,15 @@ class DevicePermission(BasePermission):
 
     def has_object_permission(self, request, view, obj):
         return True
+
+
+class LocationPermission(BasePermission):
+    def has_permission(self, request, view):
+        if request.user.is_superuser:
+            return True
+        elif view.action in ['retrieve', 'list']:
+            return True
+        else:
+            return False
+    def has_object_permission(self, request, view, obj):
+        return True

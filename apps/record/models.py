@@ -1,6 +1,6 @@
 from django.db import models
 from util.base_model import BaseModel
-from apps.device.models import Device
+from apps.device.models import Device, Location
 
 # Create your models here.
 OPERATION_ITEMS = (
@@ -37,6 +37,8 @@ class Approve(BaseModel):
     # deviceName = models.CharField(max_length=255, null=False, blank=False, verbose_name="设备名称")
     state = models.SmallIntegerField(choices=STATE_ITEMS, default=0, verbose_name="审批状态")
     show = models.BooleanField(default=True, verbose_name="是否显示")
+    location = models.ForeignKey(Location, null=True, blank=True, default=None, on_delete=models.SET_NULL,
+                                 verbose_name="位置")
 
     def __str__(self):
         tmp = {0: "申请借用", 1: "申请归还"}

@@ -8,7 +8,7 @@ from apps.user.models import Users
 from apps.user.serializers import UserInfoSerializer
 from apps.record.models import Approve, Record
 from apps.device.serializers import DeviceSerializer, DeviceAboutSerializer, LocationSerializer
-from util.custom_permission import DevicePermission
+from util.custom_permission import DevicePermission, LocationPermission
 from util.custom_page import PageSet
 
 
@@ -25,6 +25,17 @@ class DeviceViewSet(ModelViewSet):
         if Device.objects.filter(serial_number=request.data.get("serial_number")).count() > 0:
             return Response("设备的序列号已存在", 400)
         return super().create(request, *args, **kwargs)
+
+    def update(self, request, *args, **kwargs):
+        location = request.data.get("location")
+        if location is None:
+            return Response("位置不能为空", status=400)
+        L = Location.objects.filter(name=location).first()
+        if L is None:
+            return Response("位置不存在", status=400)
+        request.data['location'] = L.id
+        response = super().update(request, *args, **kwargs)
+        return response
 
     def list(self, request, *args, **kwargs):
         '''
@@ -86,14 +97,12 @@ class DeviceViewSet(ModelViewSet):
             return Response("无此审批表", status=400)
         if old_approve.show:
             try:
-                approve = Approve(username=request.user.username, operation=1, device=device)
+                approve = Approve(username=request.user.username, operation=1, device=device, location=location)
                 approve.save()
             except Exception as e:
                 return Response(str(e))
-        device.location = location
         old_approve.show = False
         old_approve.save()
-        device.save()
         return Response("申请成功")
 
     @action(detail=False, methods=['post'])
@@ -125,13 +134,19 @@ class DeviceViewSet(ModelViewSet):
 class LocationViewSet(ModelViewSet):
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
+    permission_classes = [IsAuthenticated, LocationPermission]
     filter_fields = ['serial_number', 'name']
 
-    # def retrieve(self, request, *args, **kwargs):
-    #     number = request.data.get("serial_number")
-    #     try:
-    #         location = Location.objects.get(serial_number=number)
-    #     except Exception as e:
-    #         return Response("位置不存在", status=404)
-    #     serializer = self.get_serializer(location)
-    #     return Response(serializer.data)
+    def create(self, request, *args, **kwargs):
+        if Location.objects.filter(serial_number=request.data.get("serial_number")).count() > 0:
+            return Response("位置的序列号已存在", 400)
+        return super().create(request, *args, **kwargs)
+
+    @action(detail=False, methods=['POST'])
+    def retrieves(self, request, *args, **kwargs):
+        serial_number = request.data.get("serial_number")
+        location = Location.objects.filter(serial_number=serial_number).first()
+        if location is None:
+            return Response("位置不存在", status=400)
+        serializer = self.get_serializer(location)
+        return Response(serializer.data)
