@@ -22,13 +22,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-pfcrn#0wixe8pr4g088-_pi-@i#o3x3_3tjt#sp^)%@1g-q^oz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 # Application definition
 
 INSTALLED_APPS = [
+    "simpleui",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -123,7 +123,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 from device_manage.config.database import *
 from device_manage.config.drf import *
-
+from device_manage.config.simpleui import *
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

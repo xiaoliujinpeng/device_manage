@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7bd2266b-0f0b-40f1-9249-f0494a0cd7b2" name="Default Changelist" comment="修复设备序列号重复时的异常处理">
+      <change afterPath="$PROJECT_DIR$/device_manage/config/simpleui.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/device/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/device/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/device/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/device/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/device/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/device/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/micro/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/micro/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/record/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/record/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/user/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/apps.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/device_manage/config/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/device_manage/config/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/device_manage/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/device_manage/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,10 +52,14 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../py reference/django-rest-framework" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/media" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\pyproject\device_manage\device_manage\media" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\pyproject\device_manage\device_manage\static\admin\simpleui-x\img" />
       <recent name="D:\pyproject\device_manage\device_manage" />
     </key>
   </component>

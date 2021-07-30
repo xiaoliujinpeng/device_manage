@@ -12,7 +12,6 @@ class Device(BaseModel):
     )
     serial_number = models.CharField(max_length=255, null=False, unique=True, blank=False, verbose_name="设备编号")
     name = models.CharField(max_length=255, null=False, blank=False, verbose_name="设备名称")
-    # location = models.CharField(max_length=255, null=False, blank=False, verbose_name="设备位置")
     location = models.ForeignKey("Location", on_delete=models.SET_NULL, null=True, verbose_name="设备位置")
     classes = models.CharField(max_length=255, null=False, blank=False, verbose_name="设备类型")
     comments = models.CharField(max_length=500, null=True, blank=True, verbose_name="备注")
