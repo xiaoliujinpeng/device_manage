@@ -1,17 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="7bd2266b-0f0b-40f1-9249-f0494a0cd7b2" name="Default Changelist" comment="修复设备序列号重复时的异常处理">
-      <change afterPath="$PROJECT_DIR$/device_manage/config/simpleui.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/device_manage/config/logs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/device_manage.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/device_manage.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/analysis/MiddleMare/ApiLogger.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/analysis/MiddleMare/ApiLogger.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/device/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/device/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/device/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/device/apps.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/device/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/device/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/micro/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/micro/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/record/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/record/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/user/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/device/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/device/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/record/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/record/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/record/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/record/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/device_manage/config/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/device_manage/config/database.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/device_manage/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/device_manage/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/device_manage/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/device_manage/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/LogMiddlerware.py" beforeDir="false" afterPath="$PROJECT_DIR$/util/LogMiddlerware.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/custom_permission.py" beforeDir="false" afterPath="$PROJECT_DIR$/util/custom_permission.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +66,7 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="JupyterTrust" id="7c90732b-4de1-49cf-bb81-0bc2f4fae85f" />
   <component name="ProjectId" id="1uI8TOjwM3WYFEeI8H2R2ttyVYD" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -52,7 +77,17 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/media" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="web.server" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -71,13 +106,14 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="D:\Anaconda3\envs\device_manage\python.exe" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/manage.py" />
-      <option name="PARAMETERS" value="runserver 127.0.0.1:8001" />
+      <option name="PARAMETERS" value="runserver 127.0.0.1:8000" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -87,6 +123,9 @@
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\12406\AppData\Roaming\Subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="7bd2266b-0f0b-40f1-9249-f0494a0cd7b2" name="Default Changelist" comment="" />
@@ -94,6 +133,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1624341750081</updated>
+      <workItem from="1627720143410" duration="136000" />
+      <workItem from="1627726047003" duration="871000" />
+      <workItem from="1628324472264" duration="63000" />
+      <workItem from="1628508278203" duration="41000" />
+      <workItem from="1628508701095" duration="7559000" />
+      <workItem from="1632536288857" duration="3316000" />
+      <workItem from="1632623229594" duration="5011000" />
+      <workItem from="1632885834572" duration="4909000" />
+      <workItem from="1634388975033" duration="869000" />
+      <workItem from="1638241502611" duration="4455000" />
+      <workItem from="1639898005425" duration="918000" />
     </task>
     <task id="LOCAL-00001" summary="fix -">
       <created>1624441058758</created>
@@ -140,6 +190,9 @@
     <option name="localTasksCounter" value="7" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -158,5 +211,8 @@
     <MESSAGE value="fix -" />
     <MESSAGE value="修复设备序列号重复时的异常处理" />
     <option name="LAST_COMMIT_MESSAGE" value="修复设备序列号重复时的异常处理" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/device_manage$manage.coverage" NAME="manage 覆盖结果" MODIFIED="1639898037617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

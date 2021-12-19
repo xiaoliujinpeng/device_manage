@@ -22,8 +22,12 @@ class ApproveSerializer(serializers.ModelSerializer):
         result = super().to_representation(instance)
         obj = Users.objects.filter(username=instance.username).first()
         result['name'] = obj.name
-        result['deviceName'] = instance.device.name
-        result['deviceId'] = instance.device.serial_number
+        if instance.device:
+            result['deviceName'] = instance.device.name
+            result['deviceId'] = instance.device.serial_number
+        else:
+            result['deviceName'] = None
+            result['deviceId'] = None
         if result['location'] is None:
             pass
         else:

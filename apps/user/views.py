@@ -104,6 +104,8 @@ class UserRegisterViewSet(ModelViewSet):
         user = UserRegister.objects.get(username=username)
         if user is None:
             return Response("无此用户", status=400)
+        if Users.objects.filter(username=user.username).exists():
+            return Response("此用户已存在", status=400)
         Users.objects.create_user(username=username, name=user.name, password=user.password)
         user.delete()
         return Response("创建成功")

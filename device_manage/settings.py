@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-pfcrn#0wixe8pr4g088-_pi-@i#o3x3_3tjt#sp^)%@1g-q^oz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 # Application definition
@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'django.contrib.admindocs',
     'corsheaders',
     'rest_framework',
     'apps.user',
@@ -54,7 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'apps.analysis.MiddleMare.ApiLogger.ApiLogger',
+    # 'apps.analysis.MiddleMare.ApiLogger.ApiLogger',
 ]
 
 ROOT_URLCONF = 'device_manage.urls'
@@ -124,6 +124,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 from device_manage.config.database import *
 from device_manage.config.drf import *
 from device_manage.config.simpleui import *
+from device_manage.config.logs import *
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

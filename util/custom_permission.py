@@ -2,6 +2,8 @@ from rest_framework.permissions import BasePermission
 
 
 class ApprovePermission(BasePermission):
+    message = "没有权限"
+    code = 401
 
     def has_permission(self, request, view):
         if request.user.is_superuser:
@@ -42,5 +44,6 @@ class LocationPermission(BasePermission):
             return True
         else:
             return False
+
     def has_object_permission(self, request, view, obj):
         return True

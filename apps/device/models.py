@@ -5,6 +5,10 @@ from util.base_model import BaseModel
 # Create your models here.
 
 class Device(BaseModel):
+    """
+        Stores a single blog entry, related to :model:`blog.Blog` and
+        :model:`auth.User`.
+        """
     STATE_ITEMS = (
         (0, "未借出"),
         (1, "借用审核中"),
@@ -23,6 +27,7 @@ class Device(BaseModel):
     class Meta:
         verbose_name = "设备表"
         verbose_name_plural = "设备表"
+        ordering = ['serial_number']
 
 
 class Location(BaseModel):

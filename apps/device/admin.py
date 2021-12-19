@@ -13,3 +13,4 @@ admin.site.register(Record)
 admin.site.register(Approve)
 admin.site.register(Users)
 admin.site.register(Location)
+

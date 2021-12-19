@@ -24,7 +24,19 @@ class DeviceViewSet(ModelViewSet):
     def create(self, request, *args, **kwargs):
         if Device.objects.filter(serial_number=request.data.get("serial_number")).count() > 0:
             return Response("设备的序列号已存在", 400)
-        return super().create(request, *args, **kwargs)
+        name = request.data.get("name")
+        serial_number = request.data.get("serial_number")
+        location_name = request.data.get("location")
+        comments = request.data.get("comments")
+        classes = request.data.get("classes")
+        location = Location.objects.filter(name=location_name).first()
+        if location is None:
+            return Response("所选位置不存在", status=400)
+        device = Device.objects.create(name=name, serial_number=serial_number, location=location, classes=classes,
+                                       comments=comments)
+        serializer = self.get_serializer(device)
+
+        return Response(serializer.data)
 
     def update(self, request, *args, **kwargs):
         location = request.data.get("location")
@@ -95,6 +107,10 @@ class DeviceViewSet(ModelViewSet):
             old_approve = Approve.objects.get(pk=approve_id)
         except Exception as e:
             return Response("无此审批表", status=400)
+        if location != device.location:
+            return Response(
+                "位置与原来的位置不一致,应前往[位置名称:{} 编号:{}]归还".format(device.location.name, device.location.serial_number),
+                status=400)
         if old_approve.show:
             try:
                 approve = Approve(username=request.user.username, operation=1, device=device, location=location)
@@ -142,7 +158,7 @@ class LocationViewSet(ModelViewSet):
             return Response("位置的序列号已存在", 400)
         return super().create(request, *args, **kwargs)
 
-    @action(detail=False, methods=['POST'])
+    @action(detail=False, methods=['POST', 'GET'])
     def retrieves(self, request, *args, **kwargs):
         serial_number = request.data.get("serial_number")
         location = Location.objects.filter(serial_number=serial_number).first()

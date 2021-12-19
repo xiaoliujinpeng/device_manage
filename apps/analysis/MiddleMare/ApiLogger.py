@@ -1,4 +1,5 @@
 from django.urls import resolve
+from django.utils.log import request_logger
 
 
 class ApiLogger:
@@ -12,11 +13,15 @@ class ApiLogger:
         namespace = resolve(request.path).namespace
         url_name = resolve(request.path).url_name
         method = request.method
-        remote_host = request.META.get("REMOTE_HOST")
-        remote_addr = request.META.get("REMOTE_ADDR")
+
+        ip = request.META.get("REMOTE_ADDR")
         status_code = response.status_code
-        # print(method, remote_addr, remote_host)
+        api = request.get_full_path()
+        record = f" {ip} {api} {namespace} {url_name} {status_code}"
+        # print(method, ip)
         # print("namespace:{}   url_name:{}".format(namespace, url_name))
         # print(request.get_full_path())
         # print(response.content)
+        request_logger.info(record)
+
         return response
