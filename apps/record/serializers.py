@@ -24,10 +24,10 @@ class ApproveSerializer(serializers.ModelSerializer):
         result['name'] = obj.name
         if instance.device:
             result['deviceName'] = instance.device.name
-            result['deviceId'] = instance.device.serial_number
+
         else:
             result['deviceName'] = None
-            result['deviceId'] = None
+        result['deviceId'] = instance.device.serial_number
         if result['location'] is None:
             pass
         else:
