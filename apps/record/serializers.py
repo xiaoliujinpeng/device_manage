@@ -9,7 +9,10 @@ class RecordSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         result = super().to_representation(instance)
         obj = Users.objects.filter(username=instance.username).first()
-        result['name'] = obj.name
+        if obj:
+            result['name'] = obj.name
+        else:
+            result['name'] = instance.username
         return result
 
     class Meta:
